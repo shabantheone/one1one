@@ -1,0 +1,41 @@
+{
+  "appId": "com.whatsapp.fulldp",
+  "appName": "WhatsApp Full DP",
+  "webDir": ".",
+  "bundledWebRuntime": false,
+  "plugins": {
+    "Camera": {
+      "permissions": ["camera", "photos"]
+    },
+    "Filesystem": {
+      "permissions": ["storage"]
+    },
+    "StatusBar": {
+      "style": "DARK",
+      "backgroundColor": "#25D366"
+    },
+    "SplashScreen": {
+      "launchShowDuration": 2000,
+      "backgroundColor": "#25D366",
+      "showSpinner": false,
+      "androidSpinnerStyle": "large",
+      "iosSpinnerStyle": "small",
+      "spinnerColor": "#ffffff"
+    }
+  },
+  "android": {
+    "allowMixedContent": true,
+    "captureInput": true,
+    "webContentsDebuggingEnabled": true,
+    "permissions": [
+      "android.permission.CAMERA",
+      "android.permission.READ_EXTERNAL_STORAGE",
+      "android.permission.WRITE_EXTERNAL_STORAGE",
+      "android.permission.ACCESS_MEDIA_LOCATION"
+    ]
+  },
+  "ios": {
+    "scheme": "WhatsApp Full DP",
+    "contentInset": "automatic"
+  }
+}

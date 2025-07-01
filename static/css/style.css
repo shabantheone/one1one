@@ -1,0 +1,832 @@
+/* Custom styles for the WhatsApp Profile Picture Resizer */
+
+/* WhatsApp Green Color Variables */
+:root {
+    --whatsapp-green: #25D366;
+    --whatsapp-green-hover: #128C7E;
+    --whatsapp-green-light: #DCF8C6;
+    --bs-success: #25D366;
+    --bs-success-rgb: 37, 211, 102;
+}
+
+/* Apply WhatsApp Green to all success elements */
+.text-success {
+    color: var(--whatsapp-green) !important;
+}
+
+.btn-success {
+    background-color: var(--whatsapp-green) !important;
+    border-color: var(--whatsapp-green) !important;
+}
+
+.btn-success:hover, .btn-success:focus, .btn-success:active {
+    background-color: var(--whatsapp-green-hover) !important;
+    border-color: var(--whatsapp-green-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.bg-success {
+    background-color: var(--whatsapp-green) !important;
+}
+
+.border-success {
+    border-color: var(--whatsapp-green) !important;
+}
+
+/* Header and Footer Styles */
+.navbar-brand:hover {
+    transform: scale(1.05);
+    transition: transform 0.2s ease;
+}
+
+footer .hover-text-success:hover {
+    color: var(--bs-success) !important;
+    transition: color 0.2s ease;
+}
+
+footer .social-links a:hover {
+    color: var(--bs-success) !important;
+    transform: translateY(-2px);
+    transition: all 0.2s ease;
+}
+
+/* Override Bootstrap theme for white background */
+body {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+}
+
+.card {
+    background-color: #ffffff !important;
+    color: #000000 !important;
+    border: 1px solid #dee2e6 !important;
+}
+
+.card-header {
+    background-color: #f8f9fa !important;
+    color: #000000 !important;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+
+.text-muted {
+    color: #6c757d !important;
+}
+
+/* Feature list styling */
+.feature-list {
+    text-align: left;
+    font-size: 1.1rem;
+}
+
+.feature-list li {
+    padding: 0.5rem 0;
+}
+
+/* Demo comparison styling */
+.comparison-demo {
+    background: #f8f9fa;
+    padding: 2rem;
+    border-radius: 1rem;
+    border: 1px solid #dee2e6;
+}
+
+.demo-container {
+    text-align: center;
+}
+
+.demo-image-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+/* Real photo demo styling */
+.demo-image {
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+    max-width: 100%;
+    height: auto;
+}
+
+.landscape-demo {
+    width: 320px;
+    height: 240px;
+    object-fit: cover;
+    max-width: 100%;
+}
+
+.square-demo {
+    width: 240px;
+    height: 240px;
+    object-fit: cover;
+    max-width: 100%;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .landscape-demo {
+        width: 280px;
+        height: 200px;
+        max-width: 100%;
+    }
+    
+    .square-demo {
+        width: 200px;
+        height: 200px;
+        max-width: 100%;
+    }
+    
+    .demo-image-wrapper {
+        overflow: visible;
+        position: relative;
+        display: flex;
+        justify-content: center;
+    }
+    
+    .comparison-demo {
+        padding: 1rem;
+    }
+    
+    /* Mobile crop overlay - much more visible */
+    .crop-overlay::before,
+    .crop-overlay::after {
+        background: rgba(220, 53, 69, 0.8);
+        width: 35px;
+    }
+    
+    .crop-line-left {
+        left: 35px;
+        width: 3px;
+        background: #dc3545;
+        box-shadow: 0 0 5px rgba(220, 53, 69, 0.8);
+    }
+    
+    .crop-line-right {
+        right: 35px;
+        width: 3px;
+        background: #dc3545;
+        box-shadow: 0 0 5px rgba(220, 53, 69, 0.8);
+    }
+    
+    .crop-box {
+        left: 35px;
+        right: 35px;
+        border: 3px solid #dc3545;
+        background: rgba(220, 53, 69, 0.1);
+    }
+}
+
+/* Crop overlay for WhatsApp demo */
+.crop-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.crop-line-left {
+    position: absolute;
+    top: 0;
+    left: 40px;
+    bottom: 0;
+    width: 3px;
+    background: #dc3545;
+    border-radius: 2px;
+}
+
+.crop-line-right {
+    position: absolute;
+    top: 0;
+    right: 40px;
+    bottom: 0;
+    width: 3px;
+    background: #dc3545;
+    border-radius: 2px;
+}
+
+.crop-box {
+    position: absolute;
+    top: 0;
+    left: 40px;
+    right: 40px;
+    bottom: 0;
+    border: 3px dashed #dc3545;
+    border-radius: 0.5rem;
+}
+
+.crop-overlay::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 40px;
+    height: 100%;
+    background: rgba(220, 53, 69, 0.6);
+}
+
+.crop-overlay::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    height: 100%;
+    background: rgba(220, 53, 69, 0.6);
+}
+
+/* Main upload area */
+.upload-area-main {
+    border: 3px dashed var(--whatsapp-green);
+    border-radius: 1rem;
+    padding: 4rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+}
+
+.upload-area-main:hover {
+    border-color: var(--whatsapp-green-hover);
+    background: linear-gradient(135deg, var(--whatsapp-green-light), #f8f9fa);
+    transform: translateY(-2px);
+}
+
+/* Small upload area for after upload */
+.upload-area-small {
+    border: 2px dashed #6c757d;
+    border-radius: 0.5rem;
+    padding: 1rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+.upload-area {
+    border: 2px dashed #6c757d;
+    border-radius: 0.5rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    background-color: #ffffff;
+}
+
+.upload-area:hover {
+    border-color: #28a745;
+    background-color: #f8f9fa;
+}
+
+.upload-area.drag-over {
+    border-color: #28a745;
+    background-color: #d1e7dd;
+    border-style: solid;
+}
+
+.upload-content {
+    pointer-events: none;
+}
+
+
+
+/* Blinking Animation */
+.text-success.blinking {
+    animation: colorBlink 1.5s infinite !important;
+}
+
+@keyframes colorBlink {
+    0% {
+        color: var(--whatsapp-green) !important;
+    }
+    50% {
+        color: #000000 !important;
+    }
+    100% {
+        color: var(--whatsapp-green) !important;
+    }
+}
+
+/* Crop Interface Styles */
+.crop-interface {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 9999 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.crop-container {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow: auto;
+}
+
+.crop-image-container {
+    position: relative;
+    display: inline-block;
+    max-width: 600px;
+    max-height: 400px;
+}
+
+#crop-canvas {
+    max-width: 100%;
+    max-height: 100%;
+    border: 1px solid #ddd;
+}
+
+.crop-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+}
+
+.crop-box {
+    position: absolute;
+    border: 2px solid #28a745;
+    background: rgba(40, 167, 69, 0.1);
+    cursor: move;
+    pointer-events: all;
+    min-width: 50px;
+    min-height: 50px;
+}
+
+.crop-box.circle {
+    border-radius: 50%;
+}
+
+.crop-handle {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #28a745;
+    border: 2px solid white;
+    border-radius: 50%;
+}
+
+.crop-handle-nw {
+    top: -6px;
+    left: -6px;
+    cursor: nw-resize;
+}
+
+.crop-handle-ne {
+    top: -6px;
+    right: -6px;
+    cursor: ne-resize;
+}
+
+.crop-handle-sw {
+    bottom: -6px;
+    left: -6px;
+    cursor: sw-resize;
+}
+
+.crop-handle-se {
+    bottom: -6px;
+    right: -6px;
+    cursor: se-resize;
+}
+
+.crop-controls {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.upload-content button {
+    pointer-events: auto;
+}
+
+.upload-area {
+    cursor: pointer;
+}
+
+/* Style selection cards */
+.style-card {
+    border: 2px solid #dee2e6;
+    border-radius: 0.75rem;
+    padding: 1.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    height: 100%;
+}
+
+.style-card:hover {
+    border-color: #28a745;
+    background: #f8f9fa;
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.1);
+}
+
+.style-card.active {
+    border-color: #28a745;
+    background: #d1e7dd;
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.style-card.disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: #f8f9fa;
+}
+
+.style-card.disabled:hover {
+    transform: none;
+    border-color: #dee2e6;
+    background: #f8f9fa;
+}
+
+.style-preview {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 1rem;
+}
+
+.color-picker input {
+    width: 60px;
+    height: 40px;
+    border: none;
+    border-radius: 0.375rem;
+    cursor: pointer;
+}
+
+/* Comparison containers */
+.comparison-container {
+    text-align: center;
+}
+
+/* Processing Options */
+.processing-options {
+    margin: 2rem 0;
+}
+
+.option-line {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    border: 2px solid #dee2e6;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    background: #ffffff;
+    font-size: 1.1rem;
+    color: #000000;
+    display: flex;
+    align-items: center;
+}
+
+.option-line:hover {
+    border-color: #28a745;
+    background: #f8f9fa;
+}
+
+.option-line.selected {
+    border-color: #28a745;
+    background: #d1e7dd;
+    font-weight: bold;
+}
+
+.option-checkbox {
+    margin-right: 1rem;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.option-line label {
+    cursor: pointer;
+    margin: 0;
+    flex: 1;
+}
+
+.option-number {
+    color: #28a745;
+    font-weight: bold;
+    margin-right: 0.5rem;
+}
+
+/* Side-by-side Preview Layout */
+.side-by-side-preview {
+    display: flex;
+    gap: 2rem;
+    align-items: flex-start;
+    justify-content: center;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.original-side, .processed-side {
+    flex: 1;
+    text-align: center;
+    min-height: 300px;
+}
+
+.preview-img {
+    max-width: 300px;
+    max-height: 300px;
+    width: 100%;
+    height: 300px;
+    object-fit: contain;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.1);
+    border: 2px solid #28a745;
+}
+
+.processing-message {
+    height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed #6c757d;
+    border-radius: 0.5rem;
+    background-color: #f8f9fa;
+}
+
+@media (max-width: 768px) {
+    .side-by-side-preview {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .preview-img {
+        max-width: 250px;
+        height: 250px;
+    }
+    
+    .processing-message {
+        height: 250px;
+    }
+}
+
+/* Color Selection */
+.color-options {
+    margin-top: 1rem;
+}
+
+/* Blur Options */
+.blur-options {
+    margin-top: 1rem;
+}
+
+.blur-slider-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.blur-labels {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 0.25rem;
+}
+
+.form-range {
+    width: 100%;
+    height: 6px;
+    background: #ddd;
+    border-radius: 3px;
+    outline: none;
+}
+
+.form-range::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: #28a745;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.form-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: #28a745;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+}
+
+.color-selector {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.color-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 2px solid transparent;
+}
+
+.color-btn:hover {
+    transform: scale(1.1);
+    border-color: #28a745;
+}
+
+.color-btn.selected {
+    border-color: #28a745;
+    transform: scale(1.2);
+}
+
+.color-picker-input {
+    width: 40px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+    padding: 0;
+}
+
+.preview-container {
+    max-width: 300px;
+    margin: 0 auto;
+    border: 1px solid var(--bs-border-color);
+    border-radius: 0.5rem;
+    overflow: hidden;
+    background-color: var(--bs-body-bg);
+}
+
+.square-preview {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+}
+
+.feature-icon {
+    padding: 1rem;
+}
+
+.progress {
+    height: 0.75rem;
+    background-color: var(--bs-secondary-bg);
+}
+
+.progress-bar {
+    background-color: #28a745;
+    transition: width 0.3s ease;
+}
+
+.card {
+    border: 1px solid var(--bs-border-color);
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+}
+
+.card-header {
+    background-color: var(--bs-secondary-bg);
+    border-bottom: 1px solid var(--bs-border-color);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .upload-area {
+        padding: 2rem 1rem;
+    }
+    
+    .upload-area-main {
+        padding: 3rem 1rem;
+    }
+    
+    .preview-container {
+        max-width: 250px;
+    }
+    
+    .display-3 {
+        font-size: 2.5rem;
+    }
+    
+    .feature-list {
+        font-size: 1rem;
+    }
+    
+    .comparison-demo {
+        padding: 1.5rem;
+    }
+    
+    .demo-image {
+        max-width: 200px;
+        height: auto;
+    }
+    
+    .style-card {
+        padding: 1rem;
+        margin-bottom: 1rem;
+    }
+    
+    .style-preview {
+        height: 50px;
+    }
+    
+    .btn-lg {
+        font-size: 1rem;
+        padding: 0.75rem 1.5rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .display-3 {
+        font-size: 2rem;
+    }
+    
+    .upload-area-main {
+        padding: 2rem 1rem;
+    }
+    
+    .demo-image {
+        max-width: 180px;
+    }
+    
+    .comparison-demo {
+        padding: 1rem;
+    }
+}
+
+/* Loading spinner animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.loading-spinner {
+    animation: spin 1s linear infinite;
+}
+
+/* Fade in animation for preview section */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+#preview-section:not(.d-none) {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Image hover effects */
+.preview-container img {
+    transition: transform 0.3s ease;
+}
+
+.preview-container:hover img {
+    transform: scale(1.05);
+}
+
+/* Custom button styles */
+.btn {
+    border-radius: 0.375rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1);
+}
+
+/* Alert styles */
+.alert {
+    border-radius: 0.5rem;
+    border: none;
+}
+
+.alert-danger {
+    background-color: var(--bs-danger-bg-subtle);
+    color: var(--bs-danger-text-emphasis);
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bs-secondary-bg);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--bs-border-color);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--bs-secondary);
+}

@@ -1,0 +1,98 @@
+[build-system]
+requires = ["setuptools>=65.0", "wheel>=0.38.0", "build>=0.10.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "whatsapp-full-dp"
+version = "1.0.0"
+description = "WhatsApp Full DP - Complete profile picture resizer"
+readme = "README.md"
+authors = [
+    {name = "WhatsApp Full DP Team", email = "support@whatsappfulldp.com"}
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Flask",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Multimedia :: Graphics :: Graphics Conversion",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+]
+requires-python = ">=3.8"
+dependencies = [
+    # Core web framework
+    "Flask>=2.3.0,<3.0.0",
+    "Werkzeug>=2.3.0,<3.0.0",
+    "Gunicorn>=20.0.0,<22.0.0",
+    
+    # Image processing - versions with reliable wheels
+    "Pillow>=9.0.0,<11.0.0",
+    "numpy>=1.21.0,<2.0.0",
+    
+    # Web utilities
+    "flask-cors>=4.0.0,<5.0.0",
+    
+    # Build and packaging
+    "wheel>=0.38.0",
+    "setuptools>=65.0.0",
+    "certifi>=2023.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0",
+    "mypy>=1.0.0",
+]
+advanced = [
+    # Optional advanced image processing
+    "opencv-python>=4.8.0",
+    "scikit-image>=0.21.0",
+    "imageio>=2.31.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/whatsapp-full-dp/app"
+Documentation = "https://github.com/whatsapp-full-dp/app/blob/main/README.md"
+Repository = "https://github.com/whatsapp-full-dp/app.git"
+"Bug Tracker" = "https://github.com/whatsapp-full-dp/app/issues"
+
+[project.scripts]
+whatsapp-dp = "app:main"
+
+[tool.setuptools]
+packages = ["whatsapp_dp"]
+include-package-data = true
+
+[tool.setuptools.package-data]
+whatsapp_dp = ["static/*", "templates/*", "*.md", "*.txt"]
+
+[tool.wheel]
+universal = false
+
+# Black code formatting
+[tool.black]
+line-length = 88
+target-version = ['py38', 'py39', 'py310', 'py311']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''

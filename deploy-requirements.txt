@@ -1,0 +1,12 @@
+# Production requirements for Vercel/Render deployment
+# Optimized for fast deployment with pre-compiled wheels
+
+Flask==2.3.3
+Werkzeug==2.3.7
+Gunicorn==21.2.0
+Pillow==10.1.0
+numpy==1.24.4
+flask-cors==4.0.0
+certifi==2024.12.14
+wheel==0.41.2
+setuptools==68.2.2

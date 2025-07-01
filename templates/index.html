@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp Profile Picture Resizer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+<body>
+    <!-- Header Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-success">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <i class="fas fa-camera-retro me-2 fs-4"></i>
+                <span class="fw-bold">WhatsApp Full DP</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#" onclick="showHome()"><i class="fas fa-home me-1"></i>Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#option-full-resize"><i class="fas fa-expand me-1"></i>Full DP</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#option-center-left-right"><i class="fas fa-arrows-alt-h me-1"></i>Centre Same</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#option-left-right-center"><i class="fas fa-compress-alt me-1"></i>Side Same</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#option-crop-colors"><i class="fas fa-palette me-1"></i>With Colors</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#option-set-blur"><i class="fas fa-blur me-1"></i>With Blur</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container my-5">
+        <!-- SEO Header -->
+        <h1 class="text-center mb-4">
+            <span class="text-dark">Whatsapp Full Dp Without Cropping</span> 
+            <span class="text-success">Creat Perfect Whatsapp Full Dp</span>
+        </h1>
+        
+        <!-- Dynamic Content Area -->
+        <div id="dynamic-content" class="d-none">
+            <div class="card shadow-sm">
+                <div class="card-body p-4">
+                    <div class="mb-3">
+                        <button onclick="showHome()" class="btn btn-outline-success btn-sm">
+                            <i class="fas fa-arrow-left me-2"></i>Back to Home
+                        </button>
+                    </div>
+                    <div id="content-area"></div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Content Area -->
+        <div id="main-content">
+            <!-- Main Header -->
+        <div class="text-center mb-5">
+
+            
+            <!-- App Description -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-lg-8">
+                    <p class="lead text-dark">
+                        Simply upload your image, choose your preferred style, and download your perfectly 
+                        fitted square profile picture in seconds. Never lose any part of your precious memories again!
+                    </p>
+                </div>
+            </div>
+            
+            <!-- Demo Image -->
+            <div class="text-center mb-5">
+                <div class="row justify-content-center">
+                    <div class="col-lg-8 col-md-10 col-sm-12">
+                        <picture>
+                            <img src="/static/demo-image.jpg" 
+                                 class="img-fluid rounded shadow-sm" 
+                                 alt="WhatsApp profile picture before and after comparison showing full display picture without cropping"
+                                 title="WhatsApp Full DP - Complete profile picture display without cropping"
+                                 loading="lazy"
+                                 decoding="async"
+                                 width="800"
+                                 height="600"
+                                 style="max-width: 100%; height: auto; object-fit: contain;">
+                        </picture>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <!-- Main Content -->
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <!-- Upload Section -->
+                <div class="text-center mb-5">
+                    <div class="upload-cta">
+                        <h2 class="mb-4 text-success">Upload Your Photo</h2>
+                        <p class="text-muted mb-4">Select a processing option above first, then upload your image</p>
+                        <div class="upload-area-main" id="upload-area" onclick="document.getElementById('file-input').click()">
+                            <div class="upload-content">
+                                <i class="fas fa-cloud-upload-alt fa-4x text-success mb-3"></i>
+                                <h4 class="mb-3">Choose Your Photo</h4>
+                                <p class="text-muted mb-3">Drop your image here or click to browse</p>
+                                <p class="text-muted small">Supports JPG and PNG files up to 16MB</p>
+                                <input type="file" id="file-input" accept=".jpg,.jpeg,.png" class="d-none">
+                                <button type="button" class="btn btn-success btn-lg mt-3" onclick="event.stopPropagation(); document.getElementById('file-input').click()">
+                                    <i class="fas fa-folder-open me-2"></i>
+                                    Choose Your Photo
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hidden Upload Processing Card -->
+                <div class="card mb-4 d-none" id="upload-processing">
+                    <div class="card-body">
+                        <div class="upload-area-small" id="upload-area-small" onclick="document.getElementById('file-input').click()">
+                            <div class="upload-content">
+                                <i class="fas fa-upload me-2"></i>
+                                <span>Upload Different Photo</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Progress Bar -->
+                        <div class="progress mt-3 d-none" id="progress-container">
+                            <div class="progress-bar progress-bar-striped progress-bar-animated" 
+                                 role="progressbar" style="width: 0%" id="progress-bar">
+                                <span id="progress-text">0%</span>
+                            </div>
+                        </div>
+                        
+                        <!-- Error Alert -->
+                        <div class="alert alert-danger mt-3 d-none" id="error-alert">
+                            <i class="fas fa-exclamation-triangle me-2"></i>
+                            <span id="error-message"></span>
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <!-- Processing Options -->
+                <div class="processing-options mt-5">
+                    <h2 class="text-center mb-4 text-success">Choose Your Processing Style</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="option-line" data-option="full-resize" id="option-full-resize">
+                                <input type="checkbox" class="option-checkbox" id="checkbox-full-resize">
+                                <label for="checkbox-full-resize">
+                                    <span class="option-number">1</span> SET FULL DP AS IT IS
+                                </label>
+                            </div>
+                            
+                            <div class="option-line" data-option="center-left-right" id="option-center-left-right">
+                                <input type="checkbox" class="option-checkbox" id="checkbox-center-left-right">
+                                <label for="checkbox-center-left-right">
+                                    <span class="option-number">2</span> Centre Same Left Right Resize
+                                </label>
+                            </div>
+                            
+                            <div class="option-line" data-option="left-right-center" id="option-left-right-center">
+                                <input type="checkbox" class="option-checkbox" id="checkbox-left-right-center">
+                                <label for="checkbox-left-right-center">
+                                    <span class="option-number">3</span> Left Right Same Centre Resize
+                                </label>
+                            </div>
+                            
+                            <div class="option-line" data-option="crop-colors" id="option-crop-colors">
+                                <input type="checkbox" class="option-checkbox" id="checkbox-crop-colors">
+                                <label for="checkbox-crop-colors">
+                                    <span class="option-number">4</span> Set Dp With Colors
+                                </label>
+                                <div class="color-options mt-2" style="display: none;">
+                                    <p class="text-muted small mb-2">Choose background color:</p>
+                                    <div class="color-selector">
+                                        <div class="color-btn" data-color="#000000" style="background: #000000;" title="Black"></div>
+                                        <div class="color-btn" data-color="#ffffff" style="background: #ffffff; border: 1px solid #ddd;" title="White"></div>
+                                        <div class="color-btn" data-color="#808080" style="background: #808080;" title="Grey"></div>
+                                        <div class="color-btn" data-color="#c0c0c0" style="background: #c0c0c0;" title="Silver"></div>
+                                        <div class="color-btn" data-color="#0066cc" style="background: #0066cc;" title="Blue"></div>
+                                        <div class="color-btn" data-color="#ffff00" style="background: #ffff00;" title="Yellow"></div>
+                                        <div class="color-btn" data-color="#ffa500" style="background: #ffa500;" title="Orange"></div>
+                                        <div class="color-btn" data-color="#28a745" style="background: #28a745;" title="Green"></div>
+                                        <div class="color-btn" data-color="#000080" style="background: #000080;" title="Navy Blue"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="option-line" data-option="set-blur" id="option-set-blur">
+                                <input type="checkbox" class="option-checkbox" id="checkbox-set-blur">
+                                <label for="checkbox-set-blur">
+                                    <span class="option-number">5</span> Set Dp With Blur
+                                </label>
+                                <div class="blur-options mt-2" style="display: none;">
+                                    <p class="text-muted small mb-2">Adjust blur intensity:</p>
+                                    <div class="blur-slider-container">
+                                        <input type="range" id="blur-slider" min="5" max="30" value="15" class="form-range">
+                                        <div class="blur-labels">
+                                            <span class="small text-muted">Low Blur</span>
+                                            <span class="small text-muted">High Blur</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+
+        </div>
+        </div> <!-- Close main-content -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-light py-5 mt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <div class="d-flex align-items-center mb-3">
+                        <i class="fas fa-camera-retro me-2 fs-4 text-success"></i>
+                        <h5 class="mb-0 fw-bold">WhatsApp Full DP</h5>
+                    </div>
+                    <p class="text-muted">
+                        Transform your photos into perfect WhatsApp profile pictures with our advanced image processing tools. 
+                        Quick, easy, and completely free.
+                    </p>
+                </div>
+                <div class="col-lg-2 col-md-4 mb-4">
+                    <h6 class="fw-bold text-success mb-3">Quick Links</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" onclick="showHome()" class="text-muted text-decoration-none hover-text-success">Home</a></li>
+                        <li><a href="#" onclick="showSection('about')" class="text-muted text-decoration-none hover-text-success">About Us</a></li>
+                        <li><a href="#" onclick="showSection('contact')" class="text-muted text-decoration-none hover-text-success">Contact Us</a></li>
+                        <li><a href="#" onclick="showSection('howItWorks')" class="text-muted text-decoration-none hover-text-success">How It Works</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h6 class="fw-bold text-success mb-3">Legal</h6>
+                    <ul class="list-unstyled">
+                        <li><a href="#" onclick="showSection('privacy')" class="text-muted text-decoration-none hover-text-success">Privacy Policy</a></li>
+                        <li><a href="#" onclick="showSection('terms')" class="text-muted text-decoration-none hover-text-success">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-4 mb-4">
+                    <h6 class="fw-bold text-success mb-3">Features</h6>
+                    <ul class="list-unstyled text-muted">
+                        <li><i class="fas fa-check text-success me-2"></i>Instant Processing</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Multiple Styles</li>
+                        <li><i class="fas fa-check text-success me-2"></i>High Quality Output</li>
+                        <li><i class="fas fa-check text-success me-2"></i>Free to Use</li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4 border-secondary">
+            <div class="row align-items-center">
+                <div class="col-12 text-center">
+                    <p class="mb-0 text-muted small">
+                        © 2024 WhatsApp Full DP. All rights reserved. Made with <i class="fas fa-heart text-danger"></i> for perfect profile pictures.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

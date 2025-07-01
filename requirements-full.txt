@@ -1,0 +1,29 @@
+# Core Flask Dependencies
+Flask==2.3.3
+Werkzeug==2.3.7
+Gunicorn==21.2.0
+
+# Image Processing - Pre-compiled wheels preferred
+Pillow==10.0.1
+numpy==1.24.3
+
+# Build Tools and Wheel Support
+wheel==0.41.2
+setuptools==68.2.2
+pip==23.2.1
+build==1.0.3
+cython==3.0.2
+
+# Security and Certificates
+certifi==2023.7.22
+
+# Optional: Additional image processing (install if needed)
+# opencv-python==4.8.1.78
+# scikit-image==0.21.0
+# imageio==2.31.5
+
+# For backend API
+flask-cors==4.0.0
+
+# Memory optimization
+psutil==5.9.5

@@ -1,0 +1,30 @@
+# Docker/Production requirements with exact versions for reproducible builds
+# These versions are tested and have reliable wheel availability
+
+# Build essentials
+pip==25.1.1
+setuptools==80.9.0
+wheel==0.45.1
+build==1.2.2
+
+# Core web framework
+Flask==2.3.3
+Werkzeug==2.3.7
+Gunicorn==21.2.0
+
+# Image processing with known wheel support
+Pillow==10.1.0
+numpy==1.24.4
+
+# Additional utilities
+flask-cors==4.0.0
+certifi==2024.12.14
+
+# Optional: Memory monitoring
+psutil==5.9.6
+
+# Security
+cryptography==42.0.5
+
+# For better error handling
+sentry-sdk[flask]==1.40.6

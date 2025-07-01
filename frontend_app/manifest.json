@@ -1,0 +1,46 @@
+{
+    "name": "WhatsApp Full DP",
+    "short_name": "WhatsApp DP", 
+    "description": "Create perfect WhatsApp profile pictures without cropping",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#25D366",
+    "orientation": "portrait-primary",
+    "scope": "/",
+    "icons": [
+        {
+            "src": "icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+        },
+        {
+            "src": "icon-512.png",
+            "sizes": "512x512", 
+            "type": "image/png",
+            "purpose": "any maskable"
+        }
+    ],
+    "categories": ["photo", "utilities"],
+    "lang": "en",
+    "dir": "ltr",
+    "prefer_related_applications": false,
+    "related_applications": [],
+    "edge_side_panel": {},
+    "launch_handler": {
+        "client_mode": "navigate-existing"
+    },
+    "permissions": [
+        "camera",
+        "storage"
+    ],
+    "file_handlers": [
+        {
+            "action": "/",
+            "accept": {
+                "image/*": [".jpg", ".jpeg", ".png", ".gif", ".webp"]
+            }
+        }
+    ]
+}
