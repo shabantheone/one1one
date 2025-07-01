@@ -25,7 +25,7 @@ classifiers = [
     "Topic :: Multimedia :: Graphics :: Graphics Conversion",
     "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
 ]
-requires-python = ">=3.8"
+requires-python = ">=3.8,<3.13"
 dependencies = [
     # Core web framework
     "Flask>=2.3.0,<3.0.0",
