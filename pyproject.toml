@@ -68,13 +68,6 @@ Repository = "https://github.com/whatsapp-full-dp/app.git"
 [project.scripts]
 whatsapp-dp = "app:main"
 
-[tool.setuptools]
-packages = ["whatsapp_dp"]
-include-package-data = true
-
-[tool.setuptools.package-data]
-whatsapp_dp = ["static/*", "templates/*", "*.md", "*.txt"]
-
 [tool.wheel]
 universal = false
 
